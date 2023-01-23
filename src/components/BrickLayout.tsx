@@ -11,7 +11,7 @@ type Props = {
   gutter?: number
   column?: number
   // breakPoint?: {
-  //   [key: number]: number
+  //   [key: number]: number // commented for now
   // }
   rtl?: boolean
   className?: string
