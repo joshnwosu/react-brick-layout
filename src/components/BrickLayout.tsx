@@ -10,9 +10,9 @@ const defaultProps = {
 type Props = {
   gutter?: number
   column?: number
-  //   breakPoint?: {
-  //     [key: number]: number
-  //   }
+  breakPoint?: {
+    [key: number]: number
+  }
   rtl?: boolean
   className?: string
   children: React.ReactNode
