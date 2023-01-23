@@ -9,7 +9,7 @@ describe('Common render', () => {
   it('renders without crashing', () => {
     render(
       <BrickLayout>
-        <div>Children</div>
+        <div>Hello</div>
       </BrickLayout>,
     )
   })
