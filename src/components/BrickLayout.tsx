@@ -39,7 +39,11 @@ const BrickLayout = ({
     // eslint-disable-next-line
   }, [])
 
-  return <div className={className}>{children}</div>
+  return (
+    <div className={className} style={style}>
+      {children}
+    </div>
+  )
 }
 
 export default BrickLayout
