@@ -9,9 +9,10 @@ root.render(
     <div>
       <BrickLayout
         className='react-brick-layout'
-        rtl={true}
+        rtl={false}
         animateOnResize={true}
         column={3}
+        gutter={20}
         breakPoint={{
           350: 1,
           450: 2,
@@ -19,7 +20,7 @@ root.render(
           900: 4,
           1200: 5,
         }}
-        style={{ backgroundColor: 'red', border: '1px solid blue' }}
+        // style={{ backgroundColor: 'black' }}
       >
         <div className='card'>1</div>
         <div className='card'>2</div>
@@ -28,6 +29,19 @@ root.render(
         <div className='card'>5</div>
         <div className='card'>6</div>
         <div className='card'>7</div>
+        <div className='card'>8</div>
+        <div className='card'>9</div>
+        <div className='card'>10</div>
+        <div className='card'>11</div>
+        <div className='card'>12</div>
+        <div className='card'>13</div>
+        <div className='card'>14</div>
+        <div className='card'>15</div>
+        <div className='card'>16</div>
+        <div className='card'>17</div>
+        <div className='card'>18</div>
+        <div className='card'>19</div>
+        <div className='card'>20</div>
       </BrickLayout>
     </div>
   </React.StrictMode>,
