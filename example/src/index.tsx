@@ -19,6 +19,7 @@ root.render(
           900: 4,
           1200: 5,
         }}
+        style={{ backgroundColor: 'red', border: '1px solid blue' }}
       >
         <div className='card'>1</div>
         <div className='card'>2</div>
