@@ -1,6 +1,8 @@
 import React from 'react'
 import _ from 'lodash'
 
+/**!!TODO: throttle */
+
 type Props = {
   gutter?: number
   column?: number
@@ -76,11 +78,9 @@ export class Brick implements Props {
       column: this.column,
     })
 
-    // console.log('Props: ', this.props)
-
-    this.resize()
-    this.mount()
     this.responsive()
+    this.mount()
+    this.resize()
   }
 
   extend(a: any, b: any) {
@@ -100,7 +100,6 @@ export class Brick implements Props {
     window.addEventListener(
       'resize',
       _.debounce(() => {
-        // console.log("Hi", this.props);
         this.responsive()
         this.mount()
       }, 500),
@@ -108,7 +107,6 @@ export class Brick implements Props {
   }
 
   responsive() {
-    // const width = window.innerWidth;
     for (const key in this.breakPoint) {
       if (Object.prototype.hasOwnProperty.call(this.breakPoint, key)) {
         if (window.innerWidth >= Number(key)) {
@@ -131,7 +129,6 @@ export class Brick implements Props {
     const column = this.column
     const container = this.container
     const itemNodeList = this.itemNodeList
-    // const done = '';
     const animateOnResize = this.props.animateOnResize
 
     const forEach = Array.prototype.forEach
@@ -185,10 +182,6 @@ export class Brick implements Props {
         .pop()
 
       container.style.height = containerHeight + 'px'
-
-      //   if (typeof done === "function") {
-      //     done(itemNodeList);
-      //   }
 
       // Animate on resize support
       if (animateOnResize) {
