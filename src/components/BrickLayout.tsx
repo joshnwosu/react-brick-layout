@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import { Brick } from './brick'
 
 interface Props {
-  gutter?: number
-  column?: number
+  gutter?: number | undefined
+  column?: number | undefined
   breakPoint?: {
-    [key: number]: number
+    [key: string]: any
   }
   rtl?: boolean
   className?: string
@@ -19,25 +19,24 @@ const defaultProps = {
   column: 5,
   breakPoint: {},
   rtl: false,
-  className: 'react-brick',
+  className: 'react-brick-layout',
   style: {},
   animateOnResize: false,
 }
 
-const BrickLayout: React.FC<Props> = (props) => {
-  const {
-    children,
-    gutter = defaultProps.gutter,
-    column = defaultProps.column,
-    rtl = defaultProps.rtl,
-    className = defaultProps.className,
-    breakPoint = defaultProps.breakPoint,
-    style = defaultProps.style,
-    animateOnResize = defaultProps.animateOnResize,
-  } = props
-
+const BrickLayout = ({
+  children,
+  gutter = defaultProps.gutter,
+  column = defaultProps.column,
+  rtl = defaultProps.rtl,
+  className = defaultProps.className,
+  breakPoint = defaultProps.breakPoint,
+  style = defaultProps.style,
+  animateOnResize = defaultProps.animateOnResize,
+}: Props) => {
   useEffect(() => {
     new Brick({ gutter, column, rtl, className, breakPoint, style, animateOnResize })
+    // eslint-disable-next-line
   }, [])
 
   return <div className={className}>{children}</div>

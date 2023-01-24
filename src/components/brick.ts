@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 
 type Props = {
   gutter?: number
@@ -23,16 +24,25 @@ const defaultProps = {
 }
 
 export class Brick implements Props {
-  container: HTMLDivElement | null
+  container: HTMLDivElement | null | any
   itemNodeList: HTMLCollection | undefined
-  gutter: number
+  gutter: number | any
   breakPoint?: { [key: string]: any } | undefined
   rtl?: boolean | undefined
-  column?: number | undefined
+  column?: number | any
   style?: React.CSSProperties | undefined
   animateOnResize?: boolean | undefined
-  props: {}
-  d_props: {}
+  props: {
+    container: HTMLDivElement | null
+    items: HTMLCollection | undefined
+    gutter: number
+    column: number
+    breakPoint: { [key: string]: any } | undefined
+    style: React.CSSProperties | undefined
+    animateOnResize?: boolean | undefined
+    rtl: boolean | undefined
+  }
+  d_props: object
 
   constructor({
     gutter = defaultProps.gutter,
@@ -43,7 +53,7 @@ export class Brick implements Props {
     animateOnResize = defaultProps.animateOnResize,
     style = defaultProps.style,
   }) {
-    this.container = document.querySelector(className)
+    this.container = document.querySelector(`.${className}`)
     this.itemNodeList = this.container?.children
     this.gutter = this.validate(gutter, 10)
     this.column = this.validate(column, 3)
@@ -66,12 +76,16 @@ export class Brick implements Props {
       column: this.column,
     })
 
-    console.log('Props: ', this.props)
+    // console.log('Props: ', this.props)
+
+    this.resize()
+    this.mount()
+    this.responsive()
   }
 
   extend(a: any, b: any) {
-    for (var key in b) {
-      if (b.hasOwnProperty(key)) {
+    for (const key in b) {
+      if (Object.prototype.hasOwnProperty.call(b, key)) {
         a[key] = b[key]
       }
     }
@@ -82,14 +96,106 @@ export class Brick implements Props {
     return typeof value === 'number' && isFinite(value) && Math.floor(value) === value ? value : defaultValue
   }
 
+  resize() {
+    window.addEventListener(
+      'resize',
+      _.debounce(() => {
+        // console.log("Hi", this.props);
+        this.responsive()
+        this.mount()
+      }, 500),
+    )
+  }
+
   responsive() {
     // const width = window.innerWidth;
     for (const key in this.breakPoint) {
-      if (this.breakPoint.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(this.breakPoint, key)) {
         if (window.innerWidth >= Number(key)) {
           this.column = this.breakPoint[key]
         }
       }
     }
+  }
+
+  mount() {
+    if (!this.props.container) {
+      return false
+    }
+    if (!this.props.items || this.props.items.length === 0) {
+      return false
+    }
+
+    let count = 0
+    const gutter = this.gutter
+    const column = this.column
+    const container = this.container
+    const itemNodeList = this.itemNodeList
+    // const done = '';
+    const animateOnResize = this.props.animateOnResize
+
+    const forEach = Array.prototype.forEach
+    const containerWidth = container.getBoundingClientRect().width
+    const firstChildWidth = (containerWidth - gutter) / column
+
+    container.style.position = 'relative'
+
+    const itemsGutter: any[] = []
+    const itemsPosX: any[] = []
+
+    for (let i = 0; i < column; ++i) {
+      itemsPosX.push(i * firstChildWidth + gutter)
+      itemsGutter.push(gutter)
+    }
+
+    // RTL support
+    if (this.props.rtl) {
+      itemsPosX.reverse()
+    }
+
+    forEach.call(itemNodeList, function (item) {
+      let itemIndex = itemsGutter
+        .slice(0)
+        .sort(function (a, b) {
+          return a - b
+        })
+        .shift()
+      itemIndex = itemsGutter.indexOf(itemIndex)
+
+      const posX = parseInt(itemsPosX[itemIndex])
+      const posY = parseInt(itemsGutter[itemIndex])
+
+      item.style.width = firstChildWidth - gutter + 'px'
+      item.style.position = 'absolute'
+      item.style.webkitBackfaceVisibility = item.style.backfaceVisibility = 'hidden'
+      item.style.transformStyle = 'preserve-3d'
+      item.style.transform = 'translate3D(' + posX + 'px,' + posY + 'px, 0)'
+
+      item.dataset.axisX = posX
+      item.dataset.axisY = posY
+
+      itemsGutter[itemIndex] += item.getBoundingClientRect().height + gutter
+      count = count + 1
+
+      const containerHeight = itemsGutter
+        .slice(0)
+        .sort(function (a, b) {
+          return a - b
+        })
+        .pop()
+
+      container.style.height = containerHeight + 'px'
+
+      //   if (typeof done === "function") {
+      //     done(itemNodeList);
+      //   }
+
+      // Animate on resize support
+      if (animateOnResize) {
+        item.style.transition = '300ms 100ms ease-in-out'
+      }
+    })
+
+    return true
   }
 }
