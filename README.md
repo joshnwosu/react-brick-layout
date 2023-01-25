@@ -5,11 +5,7 @@
 ![npm-typescript]
 [![License][github-license]][github-license-url]
 
-<!-- This repo is the example of the article ["How to create and publish React Typescript npm package with demo and automated build"](https://medium.com/@igaponov/how-to-create-and-publish-react-typescript-npm-package-with-demo-and-automated-build-80c40ec28aca). -->
-
-<!-- You can clone it and step by step create your own NPM package and publish it.
-
-It is simple React counter. -->
+`react-brick-layout` is lightweight, performant, and responsive masonry layout component that arranges elements in a grid-like structure, with elements of varying heights. The elements are placed in such a way that there are minimal gaps between them, creating a cohesive and visually appealing layout.
 
 ## Installation:
 
@@ -25,22 +21,75 @@ yarn add -D react-brick-layout
 
 ## Usage :
 
-Add `BrickLayout` to your component:
+To use the `react-brick-layout` library, you would first need to install it in your project by running `npm install react-brick-layout` or `yarn add react-brick-layout`. Once the library is installed, you can import the Masonry component and use it in your application.
+
+Here's an example of how you can use the `BrickLayout` component to create a simple Masonry layout in a React application:
 
 ```js
 import React from 'react'
-import ReactDOM from 'react-dom/client'
 import { BrickLayout } from 'react-brick-layout'
 
-const App = () => {
+const Masonry = () => {
   return (
-    <BrickLayout>
-      <div>1</div>
-      <div>1</div>
+    <BrickLayout gutter={10} column={5}>
+      <div>Element 1</div>
+      <div>Element 2</div>
+      <div>Element 3</div>
+      <div>Element 4</div>
+      <div>Element 5</div>
     </BrickLayout>
   )
 }
+
+export default Masonry
 ```
+
+## Example using the children props
+
+```js
+import React from 'react'
+import { BrickLayout } from 'react-brick-layout'
+
+const Masonry = () => {
+  return (
+    <BrickLayout
+      rtl={false}
+      animateOnResize={true}
+      column={3}
+      gutter={20}
+      breakPoint={
+        350: 1,
+        650: 2,
+        900: 3
+      }
+      children={
+        <>
+          <div>Element 1</div>
+          <div>Element 2</div>
+          <div>Element 3</div>
+          <div>Element 4</div>
+          <div>Element 5</div>
+        </>
+      }
+    />
+  )
+}
+
+export default Masonry
+```
+
+## Props
+
+| name            | type    | required | default                                     | description                                                                |
+| --------------- | ------- | -------- | ------------------------------------------- | -------------------------------------------------------------------------- |
+| style           | object  | No       | `{}`                                        | CSS style for the `BrickLayout` component                                  |
+| children        | object  | No       | `null`                                      | The list of items                                                          |
+| column          | number  | No       | `3`                                         | Column count                                                               |
+| gutter          | number  | No       | `10`                                        | The size(px) of the gap between elements                                   |
+| animateOnResize | boolean | No       | `true`                                      | Animate layout on screen resize                                            |
+| className       | string  | No       | `react-brick-layout`                        | Custom class name of layout container                                      |
+| rtl             | boolean | No       | `false`                                     | Change layout `right to left`                                              |
+| breakPoint      | object  | No       | `{350: 1, 450: 2, 645: 3, 900: 4, 1200: 5}` | Used for responsive layout. The point at which the screen size(px) changes |
 
 [npm-url]: https://www.npmjs.com/package/my-react-typescript-package
 [npm-image]: https://img.shields.io/npm/v/my-react-typescript-package
@@ -49,3 +98,7 @@ const App = () => {
 [github-build]: https://github.com/gapon2401/my-react-typescript-package/actions/workflows/publish.yml/badge.svg
 [github-build-url]: https://github.com/gapon2401/my-react-typescript-package/actions/workflows/publish.yml
 [npm-typescript]: https://img.shields.io/npm/types/my-react-typescript-package
+
+## Conclusion
+
+This package provides a simple, lightweight solution for creating responsive brick-style layouts in React. It allows for customization of the layout to suit your specific needs and requirements. If you find it useful, please consider giving it a positive rating or review. Thank you!

@@ -18,7 +18,13 @@ type Props = {
 const defaultProps = {
   gutter: 10,
   column: 5,
-  breakPoint: {},
+  breakPoint: {
+    350: 1,
+    450: 2,
+    645: 3,
+    900: 4,
+    1200: 5,
+  },
   rtl: false,
   className: 'react-brick-layout',
   animateOnResize: false,

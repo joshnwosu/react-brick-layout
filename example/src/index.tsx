@@ -34,8 +34,22 @@ root.render(
           1200: 5,
         }}
         // style={{ backgroundColor: 'black' }}
-      >
-        <div className='card'>1</div>
+        children={
+          <>
+            <div className='card'>1</div>
+            <div className='card'>2</div>
+            <div className='card'>3</div>
+            <div className='card'>4</div>
+            <div className='card'>5</div>
+            <div className='card'>6</div>
+            <div className='card'>7</div>
+            <div className='card'>8</div>
+            <div className='card'>9</div>
+            <div className='card'>10</div>
+          </>
+        }
+      />
+      {/* <div className='card'>1</div>
         <div className='card'>2</div>
         <div className='card'>3</div>
         <div className='card'>4</div>
@@ -55,7 +69,7 @@ root.render(
         <div className='card'>18</div>
         <div className='card'>19</div>
         <div className='card'>20</div>
-      </BrickLayout>
+      </BrickLayout> */}
 
       <BrickLayout
         className='boxes'
