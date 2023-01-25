@@ -4,9 +4,11 @@ import { Brick } from './brick'
 interface Props {
   gutter?: number | undefined
   column?: number | undefined
-  breakPoint?: {
-    [key: string]: any
-  }
+  breakPoint?:
+    | {
+        [key: string]: any
+      }
+    | any
   rtl?: boolean
   className?: string
   children?: React.ReactNode
