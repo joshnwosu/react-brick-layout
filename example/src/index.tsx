@@ -3,19 +3,6 @@ import ReactDOM from 'react-dom/client'
 import { BrickLayout } from 'react-brick-layout'
 import './index.css'
 
-const DATA = [
-  { title: 'Mission impossible', description: 'Ethan in mission impossible' },
-  { title: 'Mission impossible', description: 'Ethan in mission impossible' },
-  { title: 'Mission impossible', description: 'Ethan in mission impossible' },
-  { title: 'Mission impossible', description: 'Ethan in mission impossible' },
-  { title: 'Mission impossible', description: 'Ethan in mission impossible' },
-  { title: 'Mission impossible', description: 'Ethan in mission impossible' },
-  { title: 'Mission impossible', description: 'Ethan in mission impossible' },
-  { title: 'Mission impossible', description: 'Ethan in mission impossible' },
-  { title: 'Mission impossible', description: 'Ethan in mission impossible' },
-  { title: 'Mission impossible', description: 'Ethan in mission impossible' },
-]
-
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
@@ -33,7 +20,6 @@ root.render(
           900: 4,
           1200: 5,
         }}
-        // style={{ backgroundColor: 'black' }}
       >
         <div className='card'>1</div>
         <div className='card'>2</div>
@@ -56,30 +42,6 @@ root.render(
         <div className='card'>19</div>
         <div className='card'>20</div>
       </BrickLayout>
-
-      {/* <BrickLayout
-        className='boxes'
-        column={6}
-        animateOnResize={true}
-        breakPoint={{
-          350: 1,
-          450: 2,
-          645: 3,
-          900: 4,
-          1100: 5,
-          1300: 6,
-        }}
-      >
-        {DATA.map((item, index) => (
-          <div className='box' key={index}>
-            <div className='box-img'>IMAGE</div>
-            <div className='box-content'>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </div>
-          </div>
-        ))}
-      </BrickLayout> */}
     </div>
   </React.StrictMode>,
 )
