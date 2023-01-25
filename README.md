@@ -9,6 +9,8 @@
 
 <img src="./img.gif" alt="Brick demo">
 
+[**Live Demo**](https://joshnwosu.github.io/react-brick-layout/)
+
 ## Installation:
 
 ```bash
