@@ -57,7 +57,7 @@ root.render(
         <div className='card'>20</div>
       </BrickLayout>
 
-      <BrickLayout
+      {/* <BrickLayout
         className='boxes'
         column={6}
         animateOnResize={true}
@@ -79,7 +79,7 @@ root.render(
             </div>
           </div>
         ))}
-      </BrickLayout>
+      </BrickLayout> */}
     </div>
   </React.StrictMode>,
 )
