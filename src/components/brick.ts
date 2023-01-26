@@ -1,8 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
 
-/**!!TODO: throttle */
-
 type Props = {
   gutter?: number
   column?: number
