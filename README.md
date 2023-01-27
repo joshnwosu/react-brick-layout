@@ -1,4 +1,4 @@
-# react-brick-layout
+<!-- # react-brick-layout
 
 [![NPM version][npm-image]][npm-url]
 [![Build][github-build]][github-build-url]
@@ -69,4 +69,8 @@ export default Masonry
 
 ## Conclusion
 
-This package provides a simple, lightweight solution for creating responsive brick-style layouts in React. It allows for customization of the layout to suit your specific needs and requirements. If you find it useful, please consider giving it a positive rating or review. Thank you!
+This package provides a simple, lightweight solution for creating responsive brick-style layouts in React. It allows for customization of the layout to suit your specific needs and requirements. If you find it useful, please consider giving it a positive rating or review. Thank you! -->
+
+# Notice:
+
+This repository as been moved to [react-brick-view](https://github.com/joshnwosu/react-brick-view)
